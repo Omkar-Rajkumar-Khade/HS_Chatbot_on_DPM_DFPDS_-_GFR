@@ -1,0 +1,16 @@
+version: '3.3'
+services: 
+  elasticsearchDB:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
+    container_name: elastic_search_db
+    ports:
+      - "9200:9200"
+    environment:
+      - discovery.type=single-node
+      - ES_JAVA_OPTS=-Xms1024m -Xmx1024m
+      - xpack.security.enabled=false
+
+
+volumes: 
+  elasticsearchDB:
+    driver: local

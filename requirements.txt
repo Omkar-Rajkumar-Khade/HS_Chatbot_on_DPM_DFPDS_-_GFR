@@ -1,0 +1,11 @@
+haystack-ai 
+transformers 
+accelerate 
+bitsandbytes 
+sentence_transformers 
+pypdf 
+elasticsearch-haystack 
+torch 
+numpy
+streamlit_searchbox
+streamlit
