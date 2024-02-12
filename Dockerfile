@@ -1,4 +1,4 @@
-FROM python:3.11
+FROM nvcr.io/nvidia/pytorch:23.12-py3
 WORKDIR /app
 COPY  . /app
 RUN pip install --upgrade pip
