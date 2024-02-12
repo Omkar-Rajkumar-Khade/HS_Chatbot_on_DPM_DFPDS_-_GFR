@@ -6,6 +6,7 @@ from IPython.display import Image
 from pprint import pprint
 import torch
 import os
+from dotenv import load_dotenv
 from pathlib import Path
 import rich
 from haystack import Pipeline, Document
@@ -21,9 +22,12 @@ from haystack_integrations.components.retrievers.elasticsearch import Elasticsea
 
 from haystack.components.generators import HuggingFaceLocalGenerator
 from haystack.components.builders import PromptBuilder
+# config 
+load_dotenv(".env")
 
 # Initialize Elasticsearch document store
-document_store = ElasticsearchDocumentStore(hosts="http://localhost:9200",index="apptest1",)
+document_store = ElasticsearchDocumentStore(hosts=os.environ.get("db_host"),index="apptest1",)
+
 print(document_store.count_documents())
 
 # Initialize preprocessing pipeline
@@ -31,7 +35,7 @@ preprocessing_pipeline = Pipeline()
 preprocessing_pipeline.add_component("converter", PyPDFToDocument())
 preprocessing_pipeline.add_component("cleaner", DocumentCleaner())
 preprocessing_pipeline.add_component("splitter", DocumentSplitter(split_by="word", split_length=400))
-preprocessing_pipeline.add_component("doc_embedder", SentenceTransformersDocumentEmbedder(model="thenlper/gte-large", device="cuda:0"))
+preprocessing_pipeline.add_component("doc_embedder", SentenceTransformersDocumentEmbedder(model="thenlper/gte-large"))
 preprocessing_pipeline.add_component("writer", DocumentWriter(document_store=document_store, policy=DuplicatePolicy.OVERWRITE))
 preprocessing_pipeline.connect("converter", "cleaner")
 preprocessing_pipeline.connect("cleaner", "splitter")
@@ -118,7 +122,7 @@ Example:
 prompt_builder = PromptBuilder(template=prompt_template)
 
 rag_pipeline = Pipeline()
-rag_pipeline.add_component("text_embedder", SentenceTransformersTextEmbedder(model_name_or_path="thenlper/gte-large", device="cuda:0"))
+rag_pipeline.add_component("text_embedder", SentenceTransformersTextEmbedder(model_name_or_path="thenlper/gte-large"))
 rag_pipeline.add_component("retriever", ElasticsearchEmbeddingRetriever(document_store=document_store, top_k=3))
 rag_pipeline.add_component("prompt_builder", prompt_builder)
 rag_pipeline.add_component("llm", generator)
