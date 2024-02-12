@@ -122,7 +122,7 @@ Example:
 prompt_builder = PromptBuilder(template=prompt_template)
 
 rag_pipeline = Pipeline()
-rag_pipeline.add_component("text_embedder", SentenceTransformersTextEmbedder(model_name_or_path="thenlper/gte-large"))
+rag_pipeline.add_component("text_embedder", SentenceTransformersTextEmbedder(model=="thenlper/gte-large"))
 rag_pipeline.add_component("retriever", ElasticsearchEmbeddingRetriever(document_store=document_store, top_k=3))
 rag_pipeline.add_component("prompt_builder", prompt_builder)
 rag_pipeline.add_component("llm", generator)
