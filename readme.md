@@ -1,7 +1,6 @@
 # Chatbot on DPM, DFPDS & GFR
 
-
-* Elastic Search Database Setup
+## Elastic Search Database Setup
 
 ##### To start VectorDB container
 ###### For Linux
