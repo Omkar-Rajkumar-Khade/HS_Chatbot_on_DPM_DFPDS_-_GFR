@@ -1,0 +1,29 @@
+name: build docker image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-20.04
+    name: Build Image
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Setup Database
+      run: cd elasticsearch && docker-compose up -d
+
+    - name: Check Database Setup 
+      run: docker ps | grep elastic_search_db
+
+    - name: Build docker image
+      run: docker build -f ./Dockerfile . -t gymbot:1.0.0
+
+    - name: Run docker image
+      run: docker run -it -d -p 8501:8501 --name gym_guide gymbot:1.0.0
+
+    - name: Check conatiner is up
+      run: docker ps
