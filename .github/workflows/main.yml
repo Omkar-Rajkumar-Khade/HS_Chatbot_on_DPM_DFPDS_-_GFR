@@ -20,10 +20,10 @@ jobs:
       run: docker ps | grep elastic_search_db
 
     - name: Build docker image
-      run: docker build -f ./Dockerfile . -t gymbot:1.0.0
+      run: docker build -f ./Dockerfile . -t hsbot:1.0.0
 
     - name: Run docker image
-      run: docker run -it -d -p 8501:8501 --name gym_guide gymbot:1.0.0
+      run: docker run -it -d -p 8501:8501 --name hs_bot hsbot:1.0.0
 
     - name: Check conatiner is up
       run: docker ps
