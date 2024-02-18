@@ -1,5 +1,12 @@
 # Chatbot on DPM, DFPDS & GFR
 
+## Application Setup
+
+* step-1: Visit Url: https://github.com/Omkar-Rajkumar-Khade/HS_Chatbot_on_DPM_DFPDS_-_GFR/releases/tag/v1.0.0
+* step-2: Download `hsbot.exe` and `setup.exe`
+* step-3: Execute setup.exe
+* setp-4: Execute hsbot.exe 
+
 ## Elastic Search Database Setup
 
 ##### To start VectorDB container
