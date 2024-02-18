@@ -7,7 +7,8 @@
 * step-3: Execute setup.exe
 * setp-4: Execute hsbot.exe 
 
-## Elastic Search Database Setup
+
+## `Troubleshooting Database`
 
 ##### To start VectorDB container
 ###### For Linux
