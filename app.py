@@ -14,7 +14,7 @@ from haystack.components.builders import PromptBuilder
 import torch
 
 # Initialize Elasticsearch Document Store
-document_store = ElasticsearchDocumentStore(hosts="http://vectordb:9200", index="elasticsearchdb")
+document_store = ElasticsearchDocumentStore(hosts="http://localhost:9200", index="elasticsearchdb")
 
 # Function to initialize and run preprocessing pipeline
 def run_preprocessing_pipeline(file_paths, document_store):
